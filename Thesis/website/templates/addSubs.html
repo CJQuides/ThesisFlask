@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} 
+
+{% block content %}
+  <h1 align="center">Notes</h1>
+
+  <form method="POST">
+  {% for i in range(0, session['numCourse']) %}
+    <div style="border: black solid 5px;" class="p-3 m-3">
+      <div class="form-group">
+        <label for="name{{i}}">name{{i}}</label>
+        <select class="form-control" id="name{{i}}" name="name{{i}}">
+          <option value="John Doe">John Doe</option>
+          <option value="Maria Clara">Maria Clara</option>
+          <option value="Jane Doe">Jane Doe</option>
+          <option value="Peter Parker">Peter Parker</option>
+          <option value="Scott Lang">Scott Lang</option>
+          <option value="Bruce Banner">Bruce Banner</option>
+          <option value="Steve Rogers">Steve Rogers</option>
+          <option value="Tony Stark">Tony Stark</option>
+          <option value="Stephen Strange">Stephen Strange</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="course{{i}}">course{{i}}</label>
+        <select class="form-control" id="course{{i}}" name="course{{i}}">
+          <option value="NSTP 111 - National Service Training Program 1">NSTP 111 - National Service Training Program 1</option>
+          <option value="Fili 102 - Filipino sa Ibat-ibang Disiplina">Fili 102 - Filipino sa Ibat-ibang Disiplina</option>
+          <option value="PE 101 - Physical Fitness, Gymnastics and Aerobic">PE 101 - Physical Fitness, Gymnastics and Aerobic</option>
+          <option value="MATH 401 - Differential Calculus">MATH 401 - Differential Calculus</option>
+          <option value="GEd 108 - Art Appreciation">GEd 108 - Art Appreciation</option>
+          <option value="PE 102 - Rhythmic Activities">PE 102 - Rhythmic Activities</option>
+          <option value="Litr 102 - ASEAN Literature">Litr 102 - ASEAN Literature</option>
+          <option value="PE 103 - Individual and Dual Sports">PE 103 - Individual and Dual Sports</option>
+          <option value="GEd 109 - Science, Technology and Society">GEd 109 - Science, Technology and Society</option>
+          <option value="GEd 106 - Purposive Communication">GEd 106 - Purposive Communication</option>
+          <option value="ES 101 - Environmental Sciences">ES 101 - Environmental Sciences</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="section{{i}}">section{{i}}</label>    
+        <select class="form-control" id="section{{i}}" name="section{{i}}">
+          <option value="CS1">CS1</option>
+          <option value="CS2">CS2</option>
+          <option value="CS3">CS3</option>
+          <option value="CS4">CS4</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="college{{i}}">college{{i}}</label>
+        <input type="text" class="form-control" id="college{{i}}" name="college{{i}}"  value="CICS" readonly/>
+      </div>
+      <div class="form-group">
+        <label for="campus{{i}}">campus{{i}}</label>
+        <input type="text" class="form-control" id="campus{{i}}" name="campus{{i}}" value="LIPA" readonly>
+      </div>
+      <div class="form-group">
+        <label for="status{{i}}">status{{i}}</label>
+        <input type="text" class="form-control" id="status" name="status{{i}}" value="NO" readonly>
+      </div>
+    </div>
+  {% endfor %}
+    <div align="center">
+      <button type="submit" class="btn btn-primary">Enroll</button>
+    </div>
+  </form>
+{% endblock %}
+  

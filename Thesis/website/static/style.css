@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* #region Stars */
+
+.rate1, 
+.rate2, 
+.rate3, 
+.rate4, 
+.rate5,
+.rate6 {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+
+.rate1:not(:checked) > input, 
+.rate2:not(:checked) > input, 
+.rate3:not(:checked) > input, 
+.rate4:not(:checked) > input, 
+.rate5:not(:checked) > input, 
+.rate6:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+
+.rate1:not(:checked) > label, 
+.rate2:not(:checked) > label, 
+.rate3:not(:checked) > label, 
+.rate4:not(:checked) > label, 
+.rate5:not(:checked) > label, 
+.rate6:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+
+.rate1:not(:checked) > label:before, 
+.rate2:not(:checked) > label:before, 
+.rate3:not(:checked) > label:before, 
+.rate4:not(:checked) > label:before, 
+.rate5:not(:checked) > label:before, 
+.rate6:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rate1 > input:checked ~ label, 
+.rate2 > input:checked ~ label, 
+.rate3 > input:checked ~ label, 
+.rate4 > input:checked ~ label, 
+.rate5 > input:checked ~ label, 
+.rate6 > input:checked ~ label {
+    color: #ffc700;    
+}
+
+.rate1:not(:checked) > label:hover,
+.rate1:not(:checked) > label:hover ~ label,
+.rate2:not(:checked) > label:hover,
+.rate2:not(:checked) > label:hover ~ label,
+.rate3:not(:checked) > label:hover,
+.rate3:not(:checked) > label:hover ~ label,
+.rate4:not(:checked) > label:hover,
+.rate4:not(:checked) > label:hover ~ label,
+.rate5:not(:checked) > label:hover,
+.rate5:not(:checked) > label:hover ~ label,
+.rate6:not(:checked) > label:hover,
+.rate6:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+
+.rate1 > input:checked + label:hover,
+.rate1 > input:checked + label:hover ~ label,
+.rate1 > input:checked ~ label:hover,
+.rate1 > input:checked ~ label:hover ~ label,
+.rate1 > label:hover ~ input:checked ~ label,/**/
+.rate2 > input:checked + label:hover,
+.rate2 > input:checked + label:hover ~ label,
+.rate2 > input:checked ~ label:hover,
+.rate2 > input:checked ~ label:hover ~ label,
+.rate2 > label:hover ~ input:checked ~ label,/**/
+.rate3 > input:checked + label:hover,
+.rate3 > input:checked + label:hover ~ label,
+.rate3 > input:checked ~ label:hover,
+.rate3 > input:checked ~ label:hover ~ label,
+.rate3 > label:hover ~ input:checked ~ label,/**/
+.rate4 > input:checked + label:hover,
+.rate4 > input:checked + label:hover ~ label,
+.rate4 > input:checked ~ label:hover,
+.rate4 > input:checked ~ label:hover ~ label,
+.rate4 > label:hover ~ input:checked ~ label,/**/
+.rate5 > input:checked + label:hover,
+.rate5 > input:checked + label:hover ~ label,
+.rate5 > input:checked ~ label:hover,
+.rate5 > input:checked ~ label:hover ~ label,
+.rate5 > label:hover ~ input:checked ~ label,/**/
+.rate6 > input:checked + label:hover,
+.rate6 > input:checked + label:hover ~ label,
+.rate6 > input:checked ~ label:hover,
+.rate6 > input:checked ~ label:hover ~ label,
+.rate6 > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* #endregion */
+
+#subBtn {
+    background-color: #2aa548;
+    border-radius: 25px;
+    padding: 0 25px;
+}
+
+#clear1,
+#clear2,
+#clear3,
+#clear4,
+#clear5,
+#clear6 {
+    border-radius: 20px;
+    float: left;
+    height: 30px;
+    padding: 0 5px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#formButtons {
+    border: black 5px solid;
+}
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
