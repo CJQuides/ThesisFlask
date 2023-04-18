@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block title %}Form{% endblock %} {% block
+content %}
+
+{{session['currentFacultyName']}}
+{{session['currentCourse']}}
+{{session['currentCollege']}}
+{{session['userId']}}
+{{session['currentCampus']}}
+{{session['currentClass']}}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <form name="form" action="/form" method="post">
+        <div class="rateA">
+            <div class="rate1">
+                <button id="clear1" onclick="clearRadioButtonA1()">—</button>
+                <input type="radio" id="starA1.5" name="ARate1" value="5" required/>
+                <label for="starA1.5" title="text">5 stars</label>
+                <input type="radio" id="starA1.4" name="ARate1" value="4" />
+                <label for="starA1.4" title="text">4 stars</label>
+                <input type="radio" id="starA1.3" name="ARate1" value="3" />
+                <label for="starA1.3" title="text">3 stars</label>
+                <input type="radio" id="starA1.2" name="ARate1" value="2" />
+                <label for="starA1.2" title="text">2 stars</label>
+                <input type="radio" id="starA1.1" name="ARate1" value="1" />
+                <label for="starA1.1" title="text">1 star</label>
+                <span class="invalid-feedback" id="AErr1" style="display:none"><?php echo "Please Select"?></span>
+            </div>
+
+            <div class="rate2">
+                <button id="clear2" onclick="clearRadioButtonA2()">—</button>
+                <input type="radio" id="starA2.5" name="ARate2" value="5" required/>
+                <label for="starA2.5" title="text">5 stars</label>
+                <input type="radio" id="starA2.4" name="ARate2" value="4" />
+                <label for="starA2.4" title="text">4 stars</label>
+                <input type="radio" id="starA2.3" name="ARate2" value="3" />
+                <label for="starA2.3" title="text">3 stars</label>
+                <input type="radio" id="starA2.2" name="ARate2" value="2" />
+                <label for="starA2.2" title="text">2 stars</label>
+                <input type="radio" id="starA2.1" name="ARate2" value="1" />
+                <label for="starA2.1" title="text">1 star</label>
+                <span class="invalid-feedback" id="AErr2" style="display:none"><?php echo "Please Select"?></span>
+            </div>
+
+            <div class="rate3">
+                <button id="clear3" onclick="clearRadioButtonA3()">—</button>
+                <input type="radio" id="starA3.5" name="ARate3" value="5" required/>
+                <label for="starA3.5" title="text">5 stars</label>
+                <input type="radio" id="starA3.4" name="ARate3" value="4" />
+                <label for="starA3.4" title="text">4 stars</label>
+                <input type="radio" id="starA3.3" name="ARate3" value="3" />
+                <label for="starA3.3" title="text">3 stars</label>
+                <input type="radio" id="starA3.2" name="ARate3" value="2" />
+                <label for="starA3.2" title="text">2 stars</label>
+                <input type="radio" id="starA3.1" name="ARate3" value="1" />
+                <label for="starA3.1" title="text">1 star</label>
+                <span class="invalid-feedback" id="AErr3" style="display:none"><?php echo "Please Select"?></span>
+            </div>
+
+            <div class="rate4">
+                <button id="clear4" onclick="clearRadioButtonA4()">—</button>
+                <input type="radio" id="starA4.5" name="ARate4" value="5" required/>
+                <label for="starA4.5" title="text">5 stars</label>
+                <input type="radio" id="starA4.4" name="ARate4" value="4" />
+                <label for="starA4.4" title="text">4 stars</label>
+                <input type="radio" id="starA4.3" name="ARate4" value="3" />
+                <label for="starA4.3" title="text">3 stars</label>
+                <input type="radio" id="starA4.2" name="ARate4" value="2" />
+                <label for="starA4.2" title="text">2 stars</label>
+                <input type="radio" id="starA4.1" name="ARate4" value="1" />
+                <label for="starA4.1" title="text">1 star</label>
+                <span class="invalid-feedback" id="AErr4" style="display:none"><?php echo "Please Select"?></span>
+            </div>
+
+            <div class="rate5">
+                <button id="clear5" onclick="clearRadioButtonA5()">—</button>
+                <input type="radio" id="starA5.5" name="ARate5" value="5" required/>
+                <label for="starA5.5" title="text">5 stars</label>
+                <input type="radio" id="starA5.4" name="ARate5" value="4" />
+                <label for="starA5.4" title="text">4 stars</label>
+                <input type="radio" id="starA5.3" name="ARate5" value="3" />
+                <label for="starA5.3" title="text">3 stars</label>
+                <input type="radio" id="starA5.2" name="ARate5" value="2" />
+                <label for="starA5.2" title="text">2 stars</label>
+                <input type="radio" id="starA5.1" name="ARate5" value="1" />
+                <label for="starA5.1" title="text">1 star</label>
+                <span class="invalid-feedback" id="AErr5" style="display:none"><?php echo "Please Select"?></span>
+            </div>
+
+            <br><br>
+            <div class="form-group">
+              <label for="comment">Comment / Feedback</label>
+              <textarea class="form-control" id="comment" rows="3" name="comment" required></textarea>
+            </div>
+
+        <br><br><br>
+        <div style="display: block;" id="formButtons">
+            <input type="submit" id="submitButton" class="btn btn-success" value="Submit">
+            <button type="button" onclick="closeBtn()" style="border-radius: 25px; padding: 0 25px;">Click Me</button>
+            <!-- <a href="index.php" id="cancelButton" class="btn btn-danger ml-2">Cancel</a> -->
+        </div>
+                
+    </form>
+
+    <!-- <button id="subBtn" onclick="checker()" class="float-end">Click Me</button> -->
+    <!-- <button type="button" id="subBtn" onclick="checker()" class="float-end">Click Me</button> -->
+    
+{% endblock %}
