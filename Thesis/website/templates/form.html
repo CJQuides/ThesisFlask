@@ -1,0 +1,1108 @@
+{% extends "base.html" %} {% block title %}Form{% endblock %} 
+
+{% block nav%}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  
+  #navnav {
+  color: darkred;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+  #navnav2 {
+  color: white;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="logo">
+      <a style="margin-left: -50px;" class="navbar-brand flex-sm-fill text-sm-center" href="chooseProf">
+        <img src="{{ url_for('static', filename='logo.png') }}" width="70" height="70" class = "logopic">
+      </a>
+    </div>
+    <div class="school-name" >
+      <h3 id="navnav">BATANGAS STATE UNIVERSITY</h3>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link link-body-emphasis" href="logout">
+            <h4>Logout</h4>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='subtle-prism.png') }}"); 
+    background-image: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif
+  }
+</style>
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+
+<main>
+  <section class = "title">
+    <div class = "container top-2">
+      <h4>PERFORMANCE EVALUATION INSTRUMENT FOR TEACHING EFFECTIVENESS BY THE STUDENTS FOR ONLINE CLASS</h4>
+    </div>
+    <div class="container answer-form-2">
+      <!-- First Teacher -->
+      <section class = "first-teacher">
+        <div class="pt-3 border border-secondary-subtle border-3 rounded-2 mb-2">
+          <div class="row">
+            <div class="col-4 d-flex ml-3">
+              <img src="{{ url_for('static', filename='fb_icon.svg') }}" width="150" height="150" alt="Smiley">
+            </div>
+            <div class="col-4 d-flex flex-column">
+              <p>Name: {{session['currentFacultyName']}}</p>  
+              <p>Subject: {{session['currentCourse']}}</p>
+              <p>Section and Campus: {{session['currentClass']}} / {{session['currentCampus']}}</p>
+            </div>
+          </div>
+          <!-- <div class="col-4 align-content-center flex-wrap d-flex justify-content-center">
+            <a class="btn btn-outline-secondary" href="evaluate.html" role="button">Evaluate</a>
+          </div> -->
+        </div>
+      </section>
+
+      <section class = "sec-instruction">
+        <div class="table-responsive answer-sheet mt-5 border border-secondary-subtle border-3 rounded-2">
+          <div class="container border-1">
+            <table class="table">
+              <thead>
+                <tr>
+                  <p class = "m-4">Instruction: Please evaluate the following faculty member 
+                    by rating that corresponds on the given scale, where five is the perfect score and one is the lowest score.</p>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider form-score">
+                <tr>
+                  <th scope="row"></th>
+                  <td colspan="2">Rating</td>
+                  <td>Descriptive Rating</td>
+                  <td>Qualitative Description</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td colspan="2">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </td>
+                  <td>Outstanding</td>
+                  <td>Exhibits the behavior described at all times when the occasion occurs.</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td colspan="2">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked1"></span>
+                  </td>
+                  <td>Very Satisfactory</td>
+                  <td>Exhibits the behavior described most of the time when the occasion occurs.</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td colspan="2">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked1"></span>
+                    <span class="fa fa-star checked1"></span>
+                  </td>
+                  <td>Satisfactory</td>
+                  <td>Exhibits the behavior described sometimes when the occasion occurs.</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td colspan="2">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked1"></span>
+                    <span class="fa fa-star checked1"></span>
+                    <span class="fa fa-star checked1"></span>
+                  </td>
+                  <td>Fair</td>
+                  <td>Exhibits the behavior described rarely when the occasion occurs.</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td colspan="2">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked1"></span>
+                    <span class="fa fa-star checked1"></span>
+                    <span class="fa fa-star checked1"></span>
+                    <span class="fa fa-star checked1"></span>
+                  </td>
+                  <td>Poor</td>
+                  <td>The behavior described has not been exhibited at all times when the occasion occurs.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <form name="form" action="/form" method="post">  
+        <section class = "commitment-section">
+          <div class="table - responsive answer-sheet-info mt-5 border border-secondary-subtle border-3">
+            <div class="opening bg-secondary-subtle border-bottom border-2 pt-2 rounded-top">
+              <h5 class = "ms-4">A. COMMITMENT</h5>
+            </div>
+            <div class="commitment-main">
+              <p class = "pt-4 ms-4 me-4">
+                1. Regularly comes to class well - prepared, and properly communicates to students in advance changes in the scheduled meetings, if any, and reason/s for such changes.
+              </p>
+              <div class="star-rating ms-5 d-flex" id="star-ratingid">
+                <button class="btn text-danger" onclick="clearRadioButtonA1()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate1" id="rate1">
+                  <input type="radio" id="starA1.5" name="ARate1" value="5" required/>
+                  <label for="starA1.5" title="text">5 stars</label>
+                  <input type="radio" id="starA1.4" name="ARate1" value="4" />
+                  <label for="starA1.4" title="text">4 stars</label>
+                  <input type="radio" id="starA1.3" name="ARate1" value="3" />
+                  <label for="starA1.3" title="text">3 stars</label>
+                  <input type="radio" id="starA1.2" name="ARate1" value="2" />
+                  <label for="starA1.2" title="text">2 stars</label>
+                  <input type="radio" id="starA1.1" name="ARate1" value="1" />
+                  <label for="starA1.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="AErr1" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="commitment-main">
+              <p class = "pt-2 ms-4 me-4">
+                2. Demonstrates sensitivity to students' ability to attend to and absorb content information, making the necessary in - class adjustments whenever issues in connectivity occur on the part of the teacher or the student/s.
+              </p>
+              <div class="star-rating ms-5 d-flex" id="star-ratingid">
+                <button class="btn text-danger" onclick="clearRadioButtonA2()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate2" id="rate1">
+                  <input type="radio" id="starA2.5" name="ARate2" value="5" required/>
+                  <label for="starA2.5" title="text">5 stars</label>
+                  <input type="radio" id="starA2.4" name="ARate2" value="4" />
+                  <label for="starA2.4" title="text">4 stars</label>
+                  <input type="radio" id="starA2.3" name="ARate2" value="3" />
+                  <label for="starA2.3" title="text">3 stars</label>
+                  <input type="radio" id="starA2.2" name="ARate2" value="2" />
+                  <label for="starA2.2" title="text">2 stars</label>
+                  <input type="radio" id="starA2.1" name="ARate2" value="1" />
+                  <label for="starA2.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="AErr2" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+              
+              <div class="commitment-main">
+                <p class = "pt-2 ms-4 me-4">
+                  3. Demonstrates sensitivity and flexibility to students' ability to respond to/ submit activities, assignments, and other academic requirements, adjusting the as the need arises. 
+                </p>
+                <div class="star-rating ms-5 d-flex" id="star-ratingid-3">
+                  <button class="btn text-danger" onclick="clearRadioButtonA3()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                  <div class="rate3" id="rate1">
+                    <input type="radio" id="starA3.5" name="ARate3" value="5" required/>
+                    <label for="starA3.5" title="text">5 stars</label>
+                    <input type="radio" id="starA3.4" name="ARate3" value="4" />
+                    <label for="starA3.4" title="text">4 stars</label>
+                    <input type="radio" id="starA3.3" name="ARate3" value="3" />
+                    <label for="starA3.3" title="text">3 stars</label>
+                    <input type="radio" id="starA3.2" name="ARate3" value="2" />
+                    <label for="starA3.2" title="text">2 stars</label>
+                    <input type="radio" id="starA3.1" name="ARate3" value="1" />
+                    <label for="starA3.1" title="text">1 star</label>
+                    <span class="invalid-feedback" id="AErr3" style="display:none"><?php echo "Please Select"?></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="commitment-main">
+                <p class = "pt-2 ms-4 me-4">
+                  4. Makes himself/herself available to students beyond official time to accomodate their questions or clarifications for asynchronous consultation.
+                </p>
+                <div class="star-rating ms-5 d-flex" id="star-ratingid-4">
+                  <button class="btn text-danger" onclick="clearRadioButtonA4()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                  <div class="rate4" id="rate1">
+                    <input type="radio" id="starA4.5" name="ARate4" value="5" required/>
+                    <label for="starA4.5" title="text">5 stars</label>
+                    <input type="radio" id="starA4.4" name="ARate4" value="4" />
+                    <label for="starA4.4" title="text">4 stars</label>
+                    <input type="radio" id="starA4.3" name="ARate4" value="3" />
+                    <label for="starA4.3" title="text">3 stars</label>
+                    <input type="radio" id="starA4.2" name="ARate4" value="2" />
+                    <label for="starA4.2" title="text">2 stars</label>
+                    <input type="radio" id="starA4.1" name="ARate4" value="1" />
+                    <label for="starA4.1" title="text">1 star</label>
+                    <span class="invalid-feedback" id="AErr4" style="display:none"><?php echo "Please Select"?></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="commitment-main">
+                <p class = "pt-2 ms-4 me-4">
+                  5. Manifests knowledge of the platform/s used in flexible teaching and learning (e.g. Google Classroom, modules), and shows a positive attitude to learn more in the use of such platform.
+                </p>
+                <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-5">
+                  <button class="btn text-danger" onclick="clearRadioButtonA5()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                  <div class="rate5" id="rate1">
+                    <input type="radio" id="starA5.5" name="ARate5" value="5" required/>
+                    <label for="starA5.5" title="text">5 stars</label>
+                    <input type="radio" id="starA5.4" name="ARate5" value="4" />
+                    <label for="starA5.4" title="text">4 stars</label>
+                    <input type="radio" id="starA5.3" name="ARate5" value="3" />
+                    <label for="starA5.3" title="text">3 stars</label>
+                    <input type="radio" id="starA5.2" name="ARate5" value="2" />
+                    <label for="starA5.2" title="text">2 stars</label>
+                    <input type="radio" id="starA5.1" name="ARate5" value="1" />
+                    <label for="starA5.1" title="text">1 star</label>
+                    <span class="invalid-feedback" id="AErr5" style="display:none"><?php echo "Please Select"?></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+        
+        <section class = "kos-section">
+          <div class="table - responsive answer-sheet-info mt-5 border border-secondary-subtle border-3">
+            <div class="opening bg-secondary-subtle border-bottom border-2 pt-2 rounded-top">
+              <h5 class = "ms-4">B. KNOWLEDGE OF SUBJECT</h5>
+            </div>
+            <div class="kos-main">
+              <p class = "pt-4 ms-4 me-4">
+                1. Demonstrates mastery of the subject matter and does not rely solely on the prescribed reference material or online sources.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-6">
+                <button class="btn text-danger" onclick="clearRadioButtonB1()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate1" id="rate1">
+                  <input type="radio" id="starB1.5" name="BRate1" value="5" required/>
+                  <label for="starB1.5" title="text">5 stars</label>
+                  <input type="radio" id="starB1.4" name="BRate1" value="4" />
+                  <label for="starB1.4" title="text">4 stars</label>
+                  <input type="radio" id="starB1.3" name="BRate1" value="3" />
+                  <label for="starB1.3" title="text">3 stars</label>
+                  <input type="radio" id="starB1.2" name="BRate1" value="2" />
+                  <label for="starB1.2" title="text">2 stars</label>
+                  <input type="radio" id="starB1.1" name="BRate1" value="1" />
+                  <label for="starB1.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="BErr1" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="kos-main">
+              <p class = "pt-2 ms-4 me-4">
+                2. Demonstrates up to knowledge and/or awareness on current trends and issues on the subject. 
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-7">
+                <button class="btn text-danger" onclick="clearRadioButtonB2()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate2" id="rate1">
+                  <input type="radio" id="starB2.5" name="BRate2" value="5" required/>
+                  <label for="starB2.5" title="text">5 stars</label>
+                  <input type="radio" id="starB2.4" name="BRate2" value="4" />
+                  <label for="starB2.4" title="text">4 stars</label>
+                  <input type="radio" id="starB2.3" name="BRate2" value="3" />
+                  <label for="starB2.3" title="text">3 stars</label>
+                  <input type="radio" id="starB2.2" name="BRate2" value="2" />
+                  <label for="starB2.2" title="text">2 stars</label>
+                  <input type="radio" id="starB2.1" name="BRate2" value="1" />
+                  <label for="starB2.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="BErr2" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+            </div>
+
+            <div class="kos-main">
+              <p class = "pt-2 ms-4 me-4">
+                3. Clearly explains the subject matter with depth, providing examples whenever necessary, summarizes major points, and provides proper closure so the lesson does not end abruptly.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-8">
+                <button class="btn text-danger" onclick="clearRadioButtonB3()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate3" id="rate1">
+                  <input type="radio" id="starB3.5" name="BRate3" value="5" required/>
+                  <label for="starB3.5" title="text">5 stars</label>
+                  <input type="radio" id="starB3.4" name="BRate3" value="4" />
+                  <label for="starB3.4" title="text">4 stars</label>
+                  <input type="radio" id="starB3.3" name="BRate3" value="3" />
+                  <label for="starB3.3" title="text">3 stars</label>
+                  <input type="radio" id="starB3.2" name="BRate3" value="2" />
+                  <label for="starB3.2" title="text">2 stars</label>
+                  <input type="radio" id="starB3.1" name="BRate3" value="1" />
+                  <label for="starB3.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="BErr3" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="kos-main">
+              <p class = "pt-2 ms-4 me-4">
+                4. Explains the relevance of present topics to the previous lessons, and relates the subject matter to relevant current issues and/or daily life activities.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-9">
+                <button class="btn text-danger" onclick="clearRadioButtonB4()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate4" id="rate1">
+                  <input type="radio" id="starB4.5" name="BRate4" value="5" required/>
+                  <label for="starB4.5" title="text">5 stars</label>
+                  <input type="radio" id="starB4.4" name="BRate4" value="4" />
+                  <label for="starB4.4" title="text">4 stars</label>
+                  <input type="radio" id="starB4.3" name="BRate4" value="3" />
+                  <label for="starB4.3" title="text">3 stars</label>
+                  <input type="radio" id="starB4.2" name="BRate4" value="2" />
+                  <label for="starB4.2" title="text">2 stars</label>
+                  <input type="radio" id="starB4.1" name="BRate4" value="1" />
+                  <label for="starB4.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="BErr4" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="kos-main">
+              <p class = "pt-2 ms-4 me-4">
+                5. Ensures that students gain new knowledge and/or new perspectives and acquire new skills necessary to achieve student outcomes.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-10">
+                <button class="btn text-danger" onclick="clearRadioButtonB5()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate5" id="rate1">
+                  <input type="radio" id="starB5.5" name="BRate5" value="5" required/>
+                  <label for="starB5.5" title="text">5 stars</label>
+                  <input type="radio" id="starB5.4" name="BRate5" value="4" />
+                  <label for="starB5.4" title="text">4 stars</label>
+                  <input type="radio" id="starB5.3" name="BRate5" value="3" />
+                  <label for="starB5.3" title="text">3 stars</label>
+                  <input type="radio" id="starB5.2" name="BRate5" value="2" />
+                  <label for="starB5.2" title="text">2 stars</label>
+                  <input type="radio" id="starB5.1" name="BRate5" value="1" />
+                  <label for="starB5.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="BErr5" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class = "tfil-section">
+          <div class="table - responsive answer-sheet-info mt-5 border border-secondary-subtle border-3">
+            <div class="opening bg-secondary-subtle border-bottom border-2 pt-2 rounded-top">
+              <h5 class = "ms-4">C. TEACHING FOR INDEPENDENT LEARNING</h5>
+            </div>
+            <div class="tfil-main">
+              <p class = "pt-4 ms-4 me-4">
+                1. Uses teaching strategies that allows students to think critically and to practice using the concepts taught.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-11">
+                <button class="btn text-danger" onclick="clearRadioButtonC1()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate1" id="rate1">
+                  <input type="radio" id="starC1.5" name="CRate1" value="5" required/>
+                  <label for="starC1.5" title="text">5 stars</label>
+                  <input type="radio" id="starC1.4" name="CRate1" value="4" />
+                  <label for="starC1.4" title="text">4 stars</label>
+                  <input type="radio" id="starC1.3" name="CRate1" value="3" />
+                  <label for="starC1.3" title="text">3 stars</label>
+                  <input type="radio" id="starC1.2" name="CRate1" value="2" />
+                  <label for="starC1.2" title="text">2 stars</label>
+                  <input type="radio" id="starC1.1" name="CRate1" value="1" />
+                  <label for="starC1.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="CErr1" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tfil-main">
+              <p class = "pt-2 ms-4 me-4">
+                2. Enhances students self - esteem and/or gives due recognition to students' performance/potentials. 
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-12">
+                <button class="btn text-danger" onclick="clearRadioButtonC2()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate2" id="rate1">
+                  <input type="radio" id="starC2.5" name="CRate2" value="5" required/>
+                  <label for="starC2.5" title="text">5 stars</label>
+                  <input type="radio" id="starC2.4" name="CRate2" value="4" />
+                  <label for="starC2.4" title="text">4 stars</label>
+                  <input type="radio" id="starC2.3" name="CRate2" value="3" />
+                  <label for="starC2.3" title="text">3 stars</label>
+                  <input type="radio" id="starC2.2" name="CRate2" value="2" />
+                  <label for="starC2.2" title="text">2 stars</label>
+                  <input type="radio" id="starC2.1" name="CRate2" value="1" />
+                  <label for="starC2.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="CErr2" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tfil-main">
+              <p class = "pt-2 ms-4 me-4">
+                3. Shows readiness in presenting the lesson using helpful audio - visual material, module, or any alternative modality to present content information that students can study or work independently.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-13">
+                <button class="btn text-danger" onclick="clearRadioButtonC3()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate3" id="rate1">
+                  <input type="radio" id="starC3.5" name="CRate3" value="5" required/>
+                  <label for="starC3.5" title="text">5 stars</label>
+                  <input type="radio" id="starC3.4" name="CRate3" value="4" />
+                  <label for="starC3.4" title="text">4 stars</label>
+                  <input type="radio" id="starC3.3" name="CRate3" value="3" />
+                  <label for="starC3.3" title="text">3 stars</label>
+                  <input type="radio" id="starC3.2" name="CRate3" value="2" />
+                  <label for="starC3.2" title="text">2 stars</label>
+                  <input type="radio" id="starC3.1" name="CRate3" value="1" />
+                  <label for="starC3.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="CErr3" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tfil-main">
+              <p class = "pt-2 ms-4 me-4">
+                4. Allows students to think independently and make their own decisions, and hold them responsible for their performance. 
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-14">
+                <button class="btn text-danger" onclick="clearRadioButtonC4()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate4" id="rate1">
+                  <input type="radio" id="starC4.5" name="CRate4" value="5" required/>
+                  <label for="starC4.5" title="text">5 stars</label>
+                  <input type="radio" id="starC4.4" name="CRate4" value="4" />
+                  <label for="starC4.4" title="text">4 stars</label>
+                  <input type="radio" id="starC4.3" name="CRate4" value="3" />
+                  <label for="starC4.3" title="text">3 stars</label>
+                  <input type="radio" id="starC4.2" name="CRate4" value="2" />
+                  <label for="starC4.2" title="text">2 stars</label>
+                  <input type="radio" id="starC4.1" name="CRate4" value="1" />
+                  <label for="starC4.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="CErr4" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+            </div>
+
+            <div class="tfil-main">
+              <p class = "pt-2 ms-4 me-4">
+                5. Encourages students to learn beyond what is required and helps/guides them on how to apply the concepts learned.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-15">
+                <button class="btn text-danger" onclick="clearRadioButtonC5()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate5" id="rate1">
+                  <input type="radio" id="starC5.5" name="CRate5" value="5" required/>
+                  <label for="starC5.5" title="text">5 stars</label>
+                  <input type="radio" id="starC5.4" name="CRate5" value="4" />
+                  <label for="starC5.4" title="text">4 stars</label>
+                  <input type="radio" id="starC5.3" name="CRate5" value="3" />
+                  <label for="starC5.3" title="text">3 stars</label>
+                  <input type="radio" id="starC5.2" name="CRate5" value="2" />
+                  <label for="starC5.2" title="text">2 stars</label>
+                  <input type="radio" id="starC5.1" name="CRate5" value="1" />
+                  <label for="starC5.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="CErr5" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section class = "molarws-section">
+          <div class="table - responsive answer-sheet-info mt-5 border border-secondary-subtle border-3">
+            <div class="opening bg-secondary-subtle border-bottom border-2 pt-2 rounded-top">
+              <h5 class = "ms-4">D. MANAGEMENT OF LEARNING AND RELATION WITH STUDENTS</h5>
+            </div>
+            <div class="molarws-main">
+              <p class = "pt-4 ms-4 me-4">
+                1. Creates opportunities for intensive and/or extensive contribution of students in the class activities (e.g. allows students to class discussion)
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-16">
+                <button class="btn text-danger" onclick="clearRadioButtonD1()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate1" id="rate1">
+                  <input type="radio" id="starD1.5" name="DRate1" value="5" required/>
+                  <label for="starD1.5" title="text">5 stars</label>
+                  <input type="radio" id="starD1.4" name="DRate1" value="4" />
+                  <label for="starD1.4" title="text">4 stars</label>
+                  <input type="radio" id="starD1.3" name="DRate1" value="3" />
+                  <label for="starD1.3" title="text">3 stars</label>
+                  <input type="radio" id="starD1.2" name="DRate1" value="2" />
+                  <label for="starD1.2" title="text">2 stars</label>
+                  <input type="radio" id="starD1.1" name="DRate1" value="1" />
+                  <label for="starD1.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="DErr1" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="molarws-main">
+              <p class = "pt-2 ms-4 me-4">
+                2. Utilizes teaching approaches and innovative assessment tools, digital and non - digital tools that are responsive to varied learning styles, and gives satisfactory feedback or responses to questions to avoid confusion.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-17">
+                <button class="btn text-danger" onclick="clearRadioButtonD2()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate2" id="rate1">
+                  <input type="radio" id="starD2.5" name="DRate2" value="5" required/>
+                  <label for="starD2.5" title="text">5 stars</label>
+                  <input type="radio" id="starD2.4" name="DRate2" value="4" />
+                  <label for="starD2.4" title="text">4 stars</label>
+                  <input type="radio" id="starD2.3" name="DRate2" value="3" />
+                  <label for="starD2.3" title="text">3 stars</label>
+                  <input type="radio" id="starD2.2" name="DRate2" value="2" />
+                  <label for="starD2.2" title="text">2 stars</label>
+                  <input type="radio" id="starD2.1" name="DRate2" value="1" />
+                  <label for="starD2.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="DErr2" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="molarws-main">
+              <p class = "pt-2 ms-4 me-4">
+                3. Deploys available flexble learning and other alternative modes of delivery. Faculty is reasonable, transparent, and outcomes - based validated.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-17">
+                <button class="btn text-danger" onclick="clearRadioButtonD3()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate3" id="rate1">
+                  <input type="radio" id="starD3.5" name="DRate3" value="5" required/>
+                  <label for="starD3.5" title="text">5 stars</label>
+                  <input type="radio" id="starD3.4" name="DRate3" value="4" />
+                  <label for="starD3.4" title="text">4 stars</label>
+                  <input type="radio" id="starD3.3" name="DRate3" value="3" />
+                  <label for="starD3.3" title="text">3 stars</label>
+                  <input type="radio" id="starD3.2" name="DRate3" value="2" />
+                  <label for="starD3.2" title="text">2 stars</label>
+                  <input type="radio" id="starD3.1" name="DRate3" value="1" />
+                  <label for="starD3.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="DErr3" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="molarws-main">
+              <p class = "pt-2 ms-4 me-4">
+                4. Shows openness to accept conflicting beliefs yet manages to implement learning conditions that promote healthy exchange of ideas. 
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-18">
+                <button class="btn text-danger" onclick="clearRadioButtonD4()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate4" id="rate1">
+                  <input type="radio" id="starD4.5" name="DRate4" value="5" required/>
+                  <label for="starD4.5" title="text">5 stars</label>
+                  <input type="radio" id="starD4.4" name="DRate4" value="4" />
+                  <label for="starD4.4" title="text">4 stars</label>
+                  <input type="radio" id="starD4.3" name="DRate4" value="3" />
+                  <label for="starD4.3" title="text">3 stars</label>
+                  <input type="radio" id="starD4.2" name="DRate4" value="2" />
+                  <label for="starD4.2" title="text">2 stars</label>
+                  <input type="radio" id="starD4.1" name="DRate4" value="1" />
+                  <label for="starD4.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="DErr4" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="molarws-main">
+              <p class = "pt-2 ms-4 me-4">
+                5. Discusses the intended learning outcomes and objectives of the course and individual topics, and structures/re-structues the teaching - learning context to enhance attainment of such outcomes.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-19">
+                <button class="btn text-danger" onclick="clearRadioButtonD5()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate5" id="rate1">
+                  <input type="radio" id="starD5.5" name="DRate5" value="5" required/>
+                  <label for="starD5.5" title="text">5 stars</label>
+                  <input type="radio" id="starD5.4" name="DRate5" value="4" />
+                  <label for="starD5.4" title="text">4 stars</label>
+                  <input type="radio" id="starD5.3" name="DRate5" value="3" />
+                  <label for="starD5.3" title="text">3 stars</label>
+                  <input type="radio" id="starD5.2" name="DRate5" value="2" />
+                  <label for="starD5.2" title="text">2 stars</label>
+                  <input type="radio" id="starD5.1" name="DRate5" value="1" />
+                  <label for="starD5.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="DErr5" style="display:none"><?php echo "Please Select"?></span>
+                </div><!-- <br><br> -->
+              </div>
+            </div>
+            
+            <div class="molarws-main">
+              <p class = "pt-2 ms-4 me-4">
+                6. Shows professionalism and an attitude worthy of respect in dealing with students in synchronous and asynchronous consultations.
+              </p>
+                <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-20">
+                  <button class="btn text-danger" onclick="clearRadioButtonD2()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                  <div class="rate6" id="rate1">
+                    <input type="radio" id="starD6.5" name="DRate6" value="5" required/>
+                    <label for="starD6.5" title="text">5 stars</label>
+                    <input type="radio" id="starD6.4" name="DRate6" value="4" />
+                    <label for="starD6.4" title="text">4 stars</label>
+                    <input type="radio" id="starD6.3" name="DRate6" value="3" />
+                    <label for="starD6.3" title="text">3 stars</label>
+                    <input type="radio" id="starD6.2" name="DRate6" value="2" />
+                    <label for="starD6.2" title="text">2 stars</label>
+                    <input type="radio" id="starD6.1" name="DRate6" value="1" />
+                    <label for="starD6.1" title="text">1 star</label>
+                    <span class="invalid-feedback" id="DErr6" style="display:none"><?php echo "Please Select"?></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </section>
+
+        <section class = "check-section">
+          <div class="table - responsive answer-sheet-info mt-5 border border-secondary-subtle border-3">
+            <div class="opening bg-secondary-subtle border-bottom border-2 pt-2 rounded-top">
+              <h6 class = "ms-4">Check the most appropriate level of satisfaction</h6>
+            </div>
+            <div class="check-main">
+              <p class = "pt-4 ms-4 me-4">
+                1. My instructor discussed the course syllabus content i.e., philosophy of the course, learning objectives, learning outcomes, course requirements, grading system, assessment and its constructive alignment with the learning outcomes, and the rubrics that will be used in evaluating assignments, examinations and projects at the start of the semester.
+              </p>
+              <div class="star-rating ms-5 d-flex pb-4" id="star-ratingid-21">
+                <button class="btn text-danger" onclick="clearRadioButtonE1()"><span><i class="fa-solid fa-circle-minus fa"></i></button>
+                <div class="rate1" id="rate1">
+                  <input type="radio" id="starE1.5" name="ERate1" value="5" required/>
+                  <label for="starE1.5" title="text">5 stars</label>
+                  <input type="radio" id="starE1.4" name="ERate1" value="4" />
+                  <label for="starE1.4" title="text">4 stars</label>
+                  <input type="radio" id="starE1.3" name="ERate1" value="3" />
+                  <label for="starE1.3" title="text">3 stars</label>
+                  <input type="radio" id="starE1.2" name="ERate1" value="2" />
+                  <label for="starE1.2" title="text">2 stars</label>
+                  <input type="radio" id="starE1.1" name="ERate1" value="1" />
+                  <label for="starE1.1" title="text">1 star</label>
+                  <span class="invalid-feedback" id="EErr1" style="display:none"><?php echo "Please Select"?></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="comments">
+          <p>Write your comments/suggestions/observations in relation to the teaching effectiveness of your instructor. <br>
+          Write <span class ="fw-bold">NONE</span> if you do not have any comments/suggestions/observations. 
+          </p>        
+          <div class="form-group">
+            <label for="comment">Comment / Feedback</label>
+            <textarea class="form-control" id="comment" rows="3" name="comment" required></textarea>
+          </div>
+        </div>
+      
+        <br><br><br>
+        <div class="border border-1 p-2 answer-sheet-info" id="formButtons">
+          <div class="align-content-center d-flex flex-wrap justify-content-end mb-4">
+            <input type="submit" id="submitButton" class="btn btn-outline-success" value="Submit">
+          </div>
+          <div class="align-content-center d-flex flex-wrap justify-content-end">
+            <a class="btn btn-outline-secondary" href="chooseProf">Cancel</a>
+          </div>
+        </div>
+      </form>
+      <!-- 
+      <button type="button" id="subBtn" onclick="checker()" class="float-end">Click Me</button> -->
+
+    </div>
+  </section>
+  <button class = "scrollToTopBtn">↑</button>
+</main>
+
+<footer>
+  
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="http://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <!-- <a class = "gotopbtn text-white" href = "#top">↑</a> -->
+  <script>
+    
+    function checker() {
+        var allCheckerA = "No";
+        var allCheckerB = "No";
+        var allCheckerC = "No";
+        var allCheckerD = "No";
+        var allCheckerE = "No";
+        //A
+        var aErrors1 = document.getElementById("AErr1");
+        var aErrors2 = document.getElementById("AErr2");
+        var aErrors3 = document.getElementById("AErr3");
+        var aErrors4 = document.getElementById("AErr4");
+        var aErrors5 = document.getElementById("AErr5");
+        //B
+        var bErrors1 = document.getElementById("BErr1");
+        var bErrors2 = document.getElementById("BErr2");
+        var bErrors3 = document.getElementById("BErr3");
+        var bErrors4 = document.getElementById("BErr4");
+        var bErrors5 = document.getElementById("BErr5");
+        //C
+        var cErrors1 = document.getElementById("CErr1");
+        var cErrors2 = document.getElementById("CErr2");
+        var cErrors3 = document.getElementById("CErr3");
+        var cErrors4 = document.getElementById("CErr4");
+        var cErrors5 = document.getElementById("CErr5");
+        //D
+        var dErrors1 = document.getElementById("DErr1");
+        var dErrors2 = document.getElementById("DErr2");
+        var dErrors3 = document.getElementById("DErr3");
+        var dErrors4 = document.getElementById("DErr4");
+        var dErrors5 = document.getElementById("DErr5");
+        var dErrors6 = document.getElementById("DErr6");
+        //E
+        var eErrors1 = document.getElementById("EErr1");
+
+        //A
+        var checkRadioA1 = document.querySelector('input[name="ARate1"]:checked');
+        var checkRadioA2 = document.querySelector('input[name="ARate2"]:checked');
+        var checkRadioA3 = document.querySelector('input[name="ARate3"]:checked');
+        var checkRadioA4 = document.querySelector('input[name="ARate4"]:checked');
+        var checkRadioA5 = document.querySelector('input[name="ARate5"]:checked');
+        //B
+        var checkRadioB1 = document.querySelector('input[name="BRate1"]:checked');
+        var checkRadioB2 = document.querySelector('input[name="BRate2"]:checked');
+        var checkRadioB3 = document.querySelector('input[name="BRate3"]:checked');
+        var checkRadioB4 = document.querySelector('input[name="BRate4"]:checked');
+        var checkRadioB5 = document.querySelector('input[name="BRate5"]:checked');
+        //C
+        var checkRadioC1 = document.querySelector('input[name="CRate1"]:checked');
+        var checkRadioC2 = document.querySelector('input[name="CRate2"]:checked');
+        var checkRadioC3 = document.querySelector('input[name="CRate3"]:checked');
+        var checkRadioC4 = document.querySelector('input[name="CRate4"]:checked');
+        var checkRadioC5 = document.querySelector('input[name="CRate5"]:checked');
+        //D
+        var checkRadioD1 = document.querySelector('input[name="DRate1"]:checked');
+        var checkRadioD2 = document.querySelector('input[name="DRate2"]:checked');
+        var checkRadioD3 = document.querySelector('input[name="DRate3"]:checked');
+        var checkRadioD4 = document.querySelector('input[name="DRate4"]:checked');
+        var checkRadioD5 = document.querySelector('input[name="DRate5"]:checked');
+        var checkRadioD6 = document.querySelector('input[name="DRate6"]:checked');
+        //E
+        var checkRadioE1 = document.querySelector('input[name="ERate1"]:checked');
+
+    //#region A
+        if(checkRadioA1 == null) {
+            aErrors1.style.display = "block";
+            aErrors1.innerHTML = "Select One";
+        } else { aErrors1.style.display = "none"; }
+        
+        if(checkRadioA2 == null) {
+            aErrors2.style.display = "block";
+            aErrors2.innerHTML = "No one selected";
+        } else { aErrors2.style.display = "none"; }
+        
+        if(checkRadioA3 == null) {
+            aErrors3.style.display = "block";
+            aErrors3.innerHTML = "No one selected";
+        } else { aErrors3.style.display = "none"; }
+        
+        if(checkRadioA4 == null) {
+            aErrors4.style.display = "block";
+            aErrors4.innerHTML = "No one selected";
+        } else { aErrors4.style.display = "none"; }
+        
+        if(checkRadioA5 == null) {
+            aErrors5.style.display = "block";
+            aErrors5.innerHTML = "No one selected";
+        } else { aErrors5.style.display = "none"; }
+        
+        if(checkRadioA1 == null || checkRadioA2 == null || checkRadioA3 == null || checkRadioA4 == null || checkRadioA5 == null){
+            allCheckerA = "No";
+        } else { allCheckerA = "Yes"; }
+    //#endregion
+
+    //#region B
+        if(checkRadioB1 == null) {
+            bErrors1.style.display = "block";
+            bErrors1.innerHTML = "No one selected";
+        } else { bErrors1.style.display = "none"; }
+        
+        if(checkRadioB2 == null) {
+            bErrors2.style.display = "block";
+            bErrors2.innerHTML = "No one selected";
+        } else { bErrors2.style.display = "none"; }
+        
+        if(checkRadioB3 == null) {
+            bErrors3.style.display = "block";
+            bErrors3.innerHTML = "No one selected";
+        } else { bErrors3.style.display = "none"; }
+        
+        if(checkRadioB4 == null) {
+            bErrors4.style.display = "block";
+            bErrors4.innerHTML = "No one selected";
+        } else { bErrors4.style.display = "none"; }
+        
+        if(checkRadioB5 == null) {
+            bErrors5.style.display = "block";
+            bErrors5.innerHTML = "No one selected";
+        } else { bErrors5.style.display = "none"; }
+        
+        if(checkRadioB1 == null || checkRadioB2 == null || checkRadioB3 == null || checkRadioB4 == null || checkRadioB5 == null){
+            allCheckerB = "No";
+        } else { allCheckerB = "Yes"; }
+    //#endregion
+
+    //#region C
+        if(checkRadioC1 == null) {
+            cErrors1.style.display = "block";
+            cErrors1.innerHTML = "No one selected";
+        } else { cErrors1.style.display = "none"; }
+        
+        if(checkRadioC2 == null) {
+            cErrors2.style.display = "block";
+            cErrors2.innerHTML = "No one selected";
+        } else { cErrors2.style.display = "none"; }
+        
+        if(checkRadioC3 == null) {
+            cErrors3.style.display = "block";
+            cErrors3.innerHTML = "No one selected";
+        } else { cErrors3.style.display = "none"; }
+        
+        if(checkRadioC4 == null) {
+            cErrors4.style.display = "block";
+            cErrors4.innerHTML = "No one selected";
+        } else { cErrors4.style.display = "none"; }
+        
+        if(checkRadioC5 == null) {
+            cErrors5.style.display = "block";
+            cErrors5.innerHTML = "No one selected";
+        } else { cErrors5.style.display = "none"; }
+        
+        if(checkRadioC1 == null || checkRadioC2 == null || checkRadioC3 == null || checkRadioC4 == null || checkRadioC5 == null){
+            allCheckerC = "No";
+        } else { allCheckerC = "Yes"; }
+    //#endregion
+
+    //#region D
+        if(checkRadioD1 == null) {
+            dErrors1.style.display = "block";
+            dErrors1.innerHTML = "No one selected";
+        } else { dErrors1.style.display = "none"; }
+        
+        if(checkRadioD2 == null) {
+            dErrors2.style.display = "block";
+            dErrors2.innerHTML = "No one selected";
+        } else { dErrors2.style.display = "none"; }
+        
+        if(checkRadioD3 == null) {
+            dErrors3.style.display = "block";
+            dErrors3.innerHTML = "No one selected";
+        } else { dErrors3.style.display = "none"; }
+        
+        if(checkRadioD4 == null) {
+            dErrors4.style.display = "block";
+            dErrors4.innerHTML = "No one selected";
+        } else { dErrors4.style.display = "none"; }
+        
+        if(checkRadioD5 == null) {
+            dErrors5.style.display = "block";
+            dErrors5.innerHTML = "No one selected";
+        } else { dErrors5.style.display = "none"; }
+        
+        if(checkRadioD6 == null) {
+            dErrors6.style.display = "block";
+            dErrors6.innerHTML = "No one selected";
+        } else { dErrors6.style.display = "none"; }
+        
+        if(checkRadioD1 == null || checkRadioD2 == null || checkRadioD3 == null || checkRadioD4 == null || checkRadioD5 == null || checkRadioD6 == null){
+            allCheckerD = "No";
+        } else { allCheckerD = "Yes"; }
+    //#endregion
+
+    //#region E
+        if(checkRadioE1 == null) {
+            eErrors1.style.display = "block";
+            eErrors1.innerHTML = "No one selected";
+            allCheckerE = "No";
+        } else {
+            eErrors1.style.display = "none";
+            allCheckerE = "Yes";
+        }
+    //#endregion
+
+        if(allCheckerA == "Yes" && allCheckerB == "Yes" && allCheckerC == "Yes" && allCheckerD == "Yes" && allCheckerE == "Yes"){
+            //alert("Yes");
+            document.getElementById("formButtons").style.display = "block";
+        } else { 
+            //alert("No");
+            document.getElementById("formButtons").style.display = "none"; 
+        }
+    }
+
+    function closeBtn(){
+        document.getElementById("formButtons").style.display = "none";
+    }
+    
+//#region Clear Buttons A
+    function clearRadioButtonA1(){
+        var ele = document.querySelectorAll("input[name=ARate1]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonA2(){
+        var ele = document.querySelectorAll("input[name=ARate2]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonA3(){
+        var ele = document.querySelectorAll("input[name=ARate3]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonA4(){
+        var ele = document.querySelectorAll("input[name=ARate4]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonA5(){
+        var ele = document.querySelectorAll("input[name=ARate5]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+//#endregion
+    
+//#region Clear Buttons B
+    function clearRadioButtonB1(){
+        var ele = document.querySelectorAll("input[name=BRate1]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonB2(){
+        var ele = document.querySelectorAll("input[name=BRate2]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonB3(){
+        var ele = document.querySelectorAll("input[name=BRate3]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonB4(){
+        var ele = document.querySelectorAll("input[name=BRate4]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonB5(){
+        var ele = document.querySelectorAll("input[name=BRate5]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+//#endregion
+    
+//#region Clear Buttons C
+    function clearRadioButtonC1(){
+        var ele = document.querySelectorAll("input[name=CRate1]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonC2(){
+        var ele = document.querySelectorAll("input[name=CRate2]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonC3(){
+        var ele = document.querySelectorAll("input[name=CRate3]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonC4(){
+        var ele = document.querySelectorAll("input[name=CRate4]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonC5(){
+        var ele = document.querySelectorAll("input[name=CRate5]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+//#endregion
+    
+//#region Clear Buttons D
+    function clearRadioButtonD1(){
+        var ele = document.querySelectorAll("input[name=DRate1]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonD2(){
+        var ele = document.querySelectorAll("input[name=DRate2]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonD3(){
+        var ele = document.querySelectorAll("input[name=DRate3]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonD4(){
+        var ele = document.querySelectorAll("input[name=DRate4]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonD5(){
+        var ele = document.querySelectorAll("input[name=DRate5]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+
+    function clearRadioButtonD6(){
+        var ele = document.querySelectorAll("input[name=DRate6]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+//#endregion
+    
+//#region Clear Buttons D
+    function clearRadioButtonE1(){
+        var ele = document.querySelectorAll("input[name=ERate1]");
+        for(var i=0;i<ele.length;i++){
+            ele[i].checked = false;
+        }
+    }
+//#endregion
+
+</script>
+    
+{% endblock %}

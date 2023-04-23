@@ -1,0 +1,89 @@
+{% extends "base.html" %} {% block title %}Student Login{% endblock %} 
+
+{% block nav%}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  
+  #navnav {
+  color: darkred;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+  #navnav2 {
+  color: white;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="logo">
+      <a style="margin-left: -50px;" class="navbar-brand flex-sm-fill text-sm-center" href="/">
+        <img src="{{ url_for('static', filename='logo.png') }}" width="70" height="70" class = "logopic">
+      </a>
+    </div>
+    <div class="school-name" >
+      <h3 id="navnav">BATANGAS STATE UNIVERSITY</h3>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link link-body-emphasis" href="adminLogin">
+            <h4>Admin</h4>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %} 
+
+{% block content%}
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='subtle-prism.png') }}"); 
+    background-image: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif
+  }
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+
+<main>
+  <section class = "title">
+    <div class = "container top">
+      <h2>Performance Evaluation Form</h2>
+    </div>
+    <div class="container signup-2">
+      <div class = "p-2 portal-login">
+        <h2 class = "text-center">Student Login</h2>
+      </div>
+
+      <form method="POST">
+        <div class="form-group mb-5 ps-5 pe-5">
+          <label for="srcode">Sr-Code</label>
+          <input type="srcode" class="form-control" id="srcode" name="srcode" placeholder="Enter srcode" id="UsernameForSignIn"/>
+        </div>
+
+        <div class="form-group ps-5 pe-5">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" id="exampleInputPassword1"/>
+        </div><br>
+        
+        <div class="signin-button text-center mb-2">
+          <button type="submit" class="btn" style="background-color: darkred; color: white;">Login</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+{% endblock %}

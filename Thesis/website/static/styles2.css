@@ -1,0 +1,261 @@
+#body {
+  background-image: url("{{ url_for('static', filename='subtle-prism.png') }}"); 
+  background-image: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: auto;
+  background-attachment: fixed;
+  font-family: 'Poppins', sans-serif
+}
+
+/* @media (max-width: 40em){
+  .navbar{
+    display: block;
+    position: relative;
+  }
+} */
+
+/*_______________INDEX.HTML_____________*/
+.title .top{
+  /* max-width: 800px; */
+  max-width: 40rem;
+  opacity: 0.8;
+  padding: 10px;
+  border: 10px solid darkred;
+  border-radius: 10px 10px 0px 0px;
+  background-color: darkred;
+  position: relative;
+  vertical-align: middle;
+  text-shadow: 0px 0px 10px #000;
+  color: white;
+  text-align: center;
+}
+
+/*_______________STUDENT-LOGIN.HTML_____________*/
+.title .top-2{
+  /* max-width: 800px; */
+  max-width: 50rem;
+  opacity: 0.8;
+  padding: 10px;
+  border: 10px solid darkred;
+  border-radius: 10px 10px 0px 0px;
+  background-color: darkred;
+  position: relative;
+  vertical-align: middle;
+  text-shadow: 0px 0px 10px #000;
+  color: white;
+  text-align: center;
+}
+
+/*_______________EVALUATE.PHP/HTML_____________*/
+.title .top-3{
+  /* max-width: 800px; */
+  max-width: 50rem;
+  opacity: 0.8;
+  padding: 10px;
+  margin-top: 50px;
+  border: 10px solid red;
+  border-radius: 10px 10px 0px 0px;
+  background-color: red;
+  position: relative;
+  vertical-align: middle;
+  text-shadow: 0px 0px 10px #000;
+  color: white;
+  text-align: center;
+}
+
+/*_______________ADMIN.HTML_____________*/
+.title .top-4{
+  /* max-width: 800px; */
+  max-width: 40rem;
+  opacity: 0.8;
+  padding: 10px;
+  margin-top: 50px;
+  border: 10px solid red;
+  border-radius: 10px 10px 0px 0px;
+  background-color: red;
+  position: relative;
+  vertical-align: middle;
+  text-shadow: 0px 0px 10px #000;
+  color: white;
+  text-align: center;
+}
+
+
+/*_______________INDEX.HTML_____________*/
+.signup{
+  /* max-width: 800px; */
+  max-width: 40rem;
+  background-color: white;
+  padding-bottom: 50px;
+  border-radius: 0px 0px 10px 10px;
+  padding-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 50px;
+}
+
+/*_______________STUDENT-LOGIN.HTML_____________*/
+.answer-form{
+  max-width: 800px;
+  background-color: white;
+  padding-bottom: 100px;
+  border-radius: 0px 0px 10px 10px;
+  padding-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 50px;
+}
+
+/*_______________EVALUATE.PHP/HTML_____________*/
+.answer-form-2{
+  max-width: 800px;
+  background-color: white;
+  padding-bottom: 50px;
+  border-radius: 0px 0px 10px 10px;
+  padding-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 50px;
+}
+
+/*_______________ADMIN.HTML_____________*/
+.signup-2{
+  /* max-width: 800px; */
+  max-width: 40rem;
+  background-color: white;
+  padding-bottom: 50px;
+  border-radius: 0px 0px 10px 10px;
+  padding-top: 2%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 50px;
+}
+
+/* .answer-form-values{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 10px;
+} */
+
+
+/*_______________OTHERS_____________*/
+.logopic:hover{
+  transform: scale(1.2);
+  transition: .5s ease;
+  overflow: hidden;
+}
+
+.mid {
+  background-color: white;
+}
+
+.border-1{
+  border-radius: 0px 0px 10px 10px;
+}
+
+.answer-sheet-info{
+  border-radius: 10px 10px 10px 10px;
+}
+
+
+/* .answer-sheet-info-2{
+  border-radius: 0px 0px 10px 10px;
+} */
+
+.comments{
+  font-size: 12px;
+}
+
+.checked{
+  color: orange;
+}
+
+.form-score{
+  font-size: 10px;
+}
+
+.star-rating button {
+  background: none;
+  border: none;
+  margin-right: 20px;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.star-rating i {
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.star-rating i.checked {
+  color: orange;
+}
+
+.text-light2{
+  visibility: hidden;
+}
+
+/* .gotopbtn{
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background: #696969;
+  bottom: 40px;
+  right: 50px;
+
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  font-size: 22px;
+  border-radius: 10px 10px 10px 10px;
+
+}
+
+.gotopbtn:hover{
+  transform: scale(1.2);
+  transition: .5s ease;
+  overflow: hidden;
+} */
+
+.scrollToTopBtn {
+  background-color: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 48px;
+  width: 48px;
+  border-radius: 10px 10px 10px 10px;
+
+  /* place it at the bottom right corner */
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  /* keep it at the top of everything else */
+  z-index: 100;
+  /* hide with opacity */
+  opacity: 0;
+  /* also add a translate effect */
+  transform: translateY(100px);
+  /* and a transition */
+  transition: all 0.5s ease;
+}
+
+.showBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrollToTopBtn:hover{
+  transform: scale(1.2);
+  transition: .5s ease;
+  overflow: hidden;
+}
+
+
+

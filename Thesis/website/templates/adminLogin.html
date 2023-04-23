@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block title %}Admin Login{% endblock %} 
+
+{% block nav%}
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="logo">
+      <a style="margin-left: -50px;" class="navbar-brand flex-sm-fill text-sm-center" href="/">
+        <img src="{{ url_for('static', filename='logo.png') }}" width="70" height="70" class = "logopic">
+      </a>
+    </div>
+    <div class="school-name" >
+      <h3 id="navnav">BATANGAS STATE UNIVERSITY</h3>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link link-body-emphasis" href="/">
+            <h4>Student</h4>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  
+  #navnav {
+  color: darkred;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+  #navnav2 {
+  color: white;
+}
+</style>
+
+{% endblock %} 
+
+{% block content%}
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='subtle-prism.png') }}"); 
+    background-image: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif
+  }
+</style>
+
+<main>
+  <section class = "title">
+    <div class = "container top">
+      <h2>Performance Evaluation Form</h2>
+    </div>
+    <div class="container signup-2">
+      <div class = "p-2 portal-login">
+        <h2 class = "text-center">Admin Login</h2>
+      </div>
+      
+      <form method="POST">
+        <div class="form-group mb-5 ps-5 pe-5">
+          <label for="srcode">Sr-Code</label>
+          <input type="srcode" class="form-control" id="srcode" name="srcode" placeholder="Enter srcode"/>
+        </div>
+        <div class="form-group ps-5 pe-5">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" id="exampleInputPassword1"/>
+        </div><br>
+        
+        <div class="signin-button text-center mb-2">
+          <button type="submit" class="btn btn-secondary" style="background-color: darkred; color: white;">Login</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %} {% block title %}Choose Prof{% endblock %}
+
+{% block nav%}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  
+  #navnav {
+  color: darkred;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+  #navnav2 {
+  color: white;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="logo">
+      <a style="margin-left: -50px;" class="navbar-brand flex-sm-fill text-sm-center" href="chooseProf">
+        <img src="{{ url_for('static', filename='logo.png') }}" width="70" height="70" class = "logopic">
+      </a>
+    </div>
+    <div class="school-name" >
+      <h3 id="navnav">BATANGAS STATE UNIVERSITY</h3>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link link-body-emphasis" href="logout">
+            <h4>Logout</h4>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='subtle-prism.png') }}"); 
+    background-image: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif
+  }
+</style>
+
+<section class = "title">
+  <div class = "container top-2">
+    <h2>Performance Evaluation Form</h2>
+  </div>
+  <div class="container answer-form">
+        
+  {% for info in stuInfo %}
+          <div class="pt-3 border border-secondary-subtle border-3 rounded-2 mb-2">
+            <div class="row ms-2">
+              <div class="col-3 d-flex mb-3">
+                <img src="{{ url_for('static', filename='fb_icon.svg') }}"  width="100" height="100" alt="Smiley">
+              </div>
+              <div class="col-5 d-flex flex-column">
+                Course: {{ info.enrolledCourse }} <br>
+                {{ info.studentSection }} / {{ info.studentCampus }}<br>
+                Faculty Name: {{ info.professorName }} <br>
+              </div>
+              <form method="POST" class="col-4 align-content-center flex-wrap d-flex justify-content-center">
+                <div class="form-group d-none">
+                    <input type="text" class="form-control" id="facultyNames" name="facultyNames" value="{{info.professorName}}" readonly>
+                    <input type="text" class="form-control" id="course" name="course" value="{{info.enrolledCourse}}" readonly>
+                    <input type="text" class="form-control" id="campus" name="campus" value="{{info.studentCampus}}" readonly>
+                    <input type="text" class="form-control" id="college" name="college" value="{{info.studentCollege}}" readonly>
+                    <input type="text" class="form-control" id="class" name="class" value="{{info.studentSection}}" readonly>
+                </div>    
+                <div >            
+                  {%if info.evaluationStatus == 'YES'%}            
+                  <input type="submit" id="submitButton" class="btn btn-outline-secondary" value="Submit" disabled>
+                  {%else%}
+                  <input type="submit" id="submitButton" class="btn btn-outline-secondary" value="Submit">
+                  {%endif%}
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {% endfor %}
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ 
+<footer>
+  
+</footer>
+
+
+{% endblock %} 
+
+

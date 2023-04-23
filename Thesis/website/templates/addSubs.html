@@ -1,0 +1,134 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} 
+
+{% block nav%}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  
+  #navnav {
+  color: darkred;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+  #navnav2 {
+  color: white;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="logo">
+      <a style="margin-left: -50px;" class="navbar-brand flex-sm-fill text-sm-center" href="addSubs">
+        <img src="{{ url_for('static', filename='logo.png') }}" width="70" height="70" class = "logopic">
+      </a>
+    </div>
+    <div class="school-name" >
+      <h3 id="navnav">BATANGAS STATE UNIVERSITY</h3>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+  </div>
+</nav>
+{% endblock %} 
+
+{% block content %}
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='subtle-prism.png') }}"); 
+    background-image: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif
+  }
+</style>
+
+
+<main>
+  <section class = "title">
+      <div class = "container top">
+        <h2>Performance Evaluation Form</h2>
+      </div>
+      <div class="container signup-2">
+        <div class = "p-2 portal-login">
+          <h2 class = "text-center">Create Student Account</h2>
+        </div>
+        <div class="register">
+          <form method="POST" class="row g-3">
+            {% for i in range(0, session['numCourse']) %}
+            <div class="col-md-4">
+              <label for="validationDefault01" class="form-label">Faculty Name</label>
+              <select class="form-control" id="name{{i}}" name="name{{i}}" required>
+                <option value="John Doe">John Doe</option>
+                <option value="Maria Clara">Maria Clara</option>
+                <option value="Jane Doe">Jane Doe</option>
+                <option value="Peter Parker">Peter Parker</option>
+                <option value="Scott Lang">Scott Lang</option>
+                <option value="Bruce Banner">Bruce Banner</option>
+                <option value="Steve Rogers">Steve Rogers</option>
+                <option value="Tony Stark">Tony Stark</option>
+                <option value="Stephen Strange">Stephen Strange</option>
+              </select>
+            </div>
+            <div class="col-md-8">
+              <label for="validationDefault02" class="form-label">Course</label>
+              <select class="form-control" id="course{{i}}" name="course{{i}}" required>
+                <option value="NSTP 111 - National Service Training Program 1">NSTP 111 - National Service Training Program 1</option>
+                <option value="Fili 102 - Filipino sa Ibat-ibang Disiplina">Fili 102 - Filipino sa Ibat-ibang Disiplina</option>
+                <option value="PE 101 - Physical Fitness, Gymnastics and Aerobic">PE 101 - Physical Fitness, Gymnastics and Aerobic</option>
+                <option value="MATH 401 - Differential Calculus">MATH 401 - Differential Calculus</option>
+                <option value="GEd 108 - Art Appreciation">GEd 108 - Art Appreciation</option>
+                <option value="PE 102 - Rhythmic Activities">PE 102 - Rhythmic Activities</option>
+                <option value="Litr 102 - ASEAN Literature">Litr 102 - ASEAN Literature</option>
+                <option value="PE 103 - Individual and Dual Sports">PE 103 - Individual and Dual Sports</option>
+                <option value="GEd 109 - Science, Technology and Society">GEd 109 - Science, Technology and Society</option>
+                <option value="GEd 106 - Purposive Communication">GEd 106 - Purposive Communication</option>
+                <option value="ES 101 - Environmental Sciences">ES 101 - Environmental Sciences</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="inputPassword5" class="form-label">Section</label>   
+                <select class="form-control" id="section{{i}}" name="section{{i}}" required>
+                  <option value="CS1">CS1</option>
+                  <option value="CS2">CS2</option>
+                  <option value="CS3">CS3</option>
+                  <option value="CS4">CS4</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="inputPassword5" class="form-label">College</label>
+                <select class="form-control" id="college{{i}}" name="college{{i}}" required>
+                  <option value="CABEIHM">CABEIHM</option>
+                  <option value="CIT">CIT</option>
+                  <option value="CAS">CAS</option>
+                  <option value="CEAFA">CEAFA</option>
+                  <option value="CICS">CICS</option>
+                  <option value="CTE">CTE</option>
+                  <option value="NSTP">NSTP</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="inputPassword5" class="form-label">Campus</label>
+                <input type="text" class="form-control" id="campus{{i}}" name="campus{{i}}" value="LIPA" readonly>
+            </div>
+
+            <div class="ps-5" style="border-bottom: black solid 5px;">
+              <div class="container"></div>
+            </div>            
+            {% endfor %}
+            
+            <div class="col-12 align-content-center flex-wrap d-flex justify-content-center">
+              <button type="submit" style="background-color: darkred; color: white;" class="btn">Enroll</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+</main>
+{% endblock %}
+  
